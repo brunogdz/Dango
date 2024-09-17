@@ -43,11 +43,11 @@ export async function fetchProducts() {
   
     const headers = {
       'Content-Type': 'application/json',
-      'X-Shopify-Storefront-Access-Token': accessToken,
+      'X-Shopify-Storefront-Access-Token': '2be97a9fcf9a7bdf77d923608f3a10ba',
     };
   
     try {
-      const url = `https://${storeDomain}/api/2024-07/graphql.json`;
+      const url = `https://test-store-pablo.myshopify.com/api/2024-07/graphql.json`;
       console.log('Fetching from URL:', url);
   
       const response = await fetch(url, {

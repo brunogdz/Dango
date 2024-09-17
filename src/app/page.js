@@ -14,7 +14,7 @@ export default function HomePage() {
     const loadProducts = async () => {
       const fetchedProducts = await fetchProducts();
       setProducts(fetchedProducts);
-      setBanners(fetchedProducts); // Use products as banners
+      setBanners(fetchedProducts); 
     };
 
     loadProducts();
