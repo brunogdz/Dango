@@ -33,8 +33,8 @@ export async function fetchProducts() {
     `;
   
 
-    const storeDomain = process.env.SHOPIFY_STORE_DOMAIN;
-    const accessToken = process.env.SHOPIFY_ACCESS_TOKEN;
+    const storeDomain = 'test-store-pablo.myshopify.com';
+    const accessToken = '2be97a9fcf9a7bdf77d923608f3a10ba';
   
     if (!storeDomain || !accessToken) {
       console.error('Environment variables are not loaded correctly');
