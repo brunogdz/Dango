@@ -5,7 +5,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { fetchProducts } from '../../lib/api';
-import ProductCard from './ProductCard';
+import ProductCard from './productCard';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 const ProductGrid = () => {
