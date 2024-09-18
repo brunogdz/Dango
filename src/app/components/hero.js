@@ -27,7 +27,6 @@ const Hero = ({ banners }) => {
         {banners.map((banner, index) => (
           <SwiperSlide key={index}>
             <div className="flex flex-col items-center md:flex-row md:items-center justify-between">
-              {/* Text and Buttons */}
               <div className="text-center md:text-left md:w-1/2 px-4 order-2 md:order-1 mt-8 md:mt-0">
                 <h1 className="text-3xl md:text-5xl text-[#7AA65A] leading-tight mb-4">
                   {banner.title}

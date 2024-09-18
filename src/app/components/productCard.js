@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Image from 'next/image';
+import Modal from './modal';
 
 const ProductCard = ({ product }) => {
   const image = product.images.edges?.[0]?.node.originalSrc || '/placeholder.png';
   const altText = product.images.edges?.[0]?.node.altText || 'Product Image';
   const priceV2 = product.variants.edges[0].node.priceV2;
   const price = priceV2 ? parseFloat(priceV2.amount) : 0;
+  const [showModal, setShowModal] = useState(false);
 
   const formattedPrice = new Intl.NumberFormat('es-AR', {
     style: 'currency',
@@ -14,7 +16,7 @@ const ProductCard = ({ product }) => {
 
   return (
     <div className="border rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow">
-      <div className="relative w-full h-0 pb-[125%]"> 
+      <div className="relative w-full h-0 pb-[125%]">
         <Image
           src={image}
           alt={altText}
@@ -26,10 +28,11 @@ const ProductCard = ({ product }) => {
       </div>
       <div className="flex justify-between items-center mt-4">
         <p className="text-lg font-bold text-black">{formattedPrice}</p>
-        <button className="bg-[#7AA65A] text-white px-2 rounded-full transition">
+        <button className="bg-[#7AA65A] text-white px-2 rounded-full transition" onClick={() => setShowModal(true)}>
           BUY NOW
         </button>
       </div>
+      {showModal && <Modal product={product} closeModal={() => setShowModal(false)} />}
     </div>
   );
 };

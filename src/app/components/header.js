@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
 import { HiMenu } from 'react-icons/hi';
-import CustomCartIcon from './customCartIcon'; 
+import CustomCartIcon from './customCartIcon';
+import CartDropdown from './cartDropDown';
+import { useCart } from '../context/cartContext';
 
 const Header = () => {
-  const [selected, setSelected] = useState('HOME'); 
+  const [selected, setSelected] = useState('HOME');
+  const [cartOpen, setCartOpen] = useState(false);
+  const { totalItems } = useCart();
 
   const navItems = ['HOME', 'ITEM 1', 'ITEM 2', 'ITEM 3', 'ITEM 4', 'ITEM 5'];
+
+  const toggleCart = () => {
+    setCartOpen(!cartOpen);
+  };
 
   return (
     <header>
@@ -27,9 +35,8 @@ const Header = () => {
                   <a
                     href="#"
                     onClick={() => setSelected(item)}
-                    className={`${
-                      selected === item ? 'font-bold' : 'hover:text-[#4B7A44]'
-                    }`}
+                    className={`${selected === item ? 'font-bold' : 'hover:text-[#4B7A44]'
+                      }`}
                   >
                     {item}
                   </a>
@@ -41,8 +48,21 @@ const Header = () => {
             </ul>
           </nav>
 
-          <div className="text-[#70925B]">
-            <CustomCartIcon />
+          <div className="relative text-[#70925B]">
+            <button onClick={toggleCart} className="relative">
+              <CustomCartIcon />
+              {totalItems > 0 && (
+                <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full px-2">
+                  {totalItems}
+                </span>
+              )}
+            </button>
+
+            {cartOpen && (
+              <div className="absolute right-0 mt-2 w-72 bg-white border border-gray-200 rounded-lg shadow-lg z-20">
+                <CartDropdown toggleCart={toggleCart} />
+              </div>
+            )}
           </div>
         </div>
       </div>

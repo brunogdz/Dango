@@ -33,8 +33,8 @@ export async function fetchProducts() {
     `;
   
 
-    const storeDomain = 'test-store-pablo.myshopify.com';
-    const accessToken = '2be97a9fcf9a7bdf77d923608f3a10ba';
+    const storeDomain = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN;
+    const accessToken = process.env.NEXT_PUBLIC_SHOPIFY_ACCESS_TOKEN;
   
     if (!storeDomain || !accessToken) {
       console.error('Environment variables are not loaded correctly');
@@ -43,11 +43,11 @@ export async function fetchProducts() {
   
     const headers = {
       'Content-Type': 'application/json',
-      'X-Shopify-Storefront-Access-Token': '2be97a9fcf9a7bdf77d923608f3a10ba',
+      'X-Shopify-Storefront-Access-Token': `${accessToken}`,
     };
   
     try {
-      const url = `https://test-store-pablo.myshopify.com/api/2024-07/graphql.json`;
+      const url = `https://${storeDomain}/api/2024-07/graphql.json`;
       console.log('Fetching from URL:', url);
   
       const response = await fetch(url, {
